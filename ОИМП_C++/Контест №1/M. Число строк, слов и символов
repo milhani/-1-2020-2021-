@@ -1,0 +1,52 @@
+#include <fstream>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    size_t letters = 0, words = 0, lines = 0;
+    ifstream file("input.txt");
+    string str;
+
+    const unsigned int space_code = 32;
+
+    const unsigned int first_up_let = 65;
+    const unsigned int last_up_let = 90;
+
+    const unsigned int first_low_let = 97;
+    const unsigned int last_low_let = 122;
+
+    while (getline(file, str)) {
+        if (!(str.empty())) {
+            ++lines;
+        }
+        for (size_t i = 0; i != str.size(); ++i) {
+            unsigned int code = static_cast<int>(str[i]);
+            if (code < first_up_let || code > last_low_let ||
+            (code > last_up_let && code < first_low_let)) {
+                str.replace(i, 1, " ");
+            }
+        }
+        for (size_t i = 0; i != str.size(); ++i) {
+            unsigned int code = static_cast<int>(str[i]);
+            if (code != space_code) {
+                ++letters;
+                if (i == str.size() - 1) {
+                    ++words;
+                }
+            } else {
+                if (i != 0 && str[i - 1] != ' ') {
+                    ++words;
+                }
+            }
+        }
+    }
+    file.close();
+    cout << "Input file contains:\n";
+    cout << letters << " letters\n";
+    cout << words << " words\n";
+    cout << lines << " lines\n";
+    return 0;
+}
+
