@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string in, out;
+    getline(cin, in);
+    for (size_t i = 0; i != in.size(); ++i) {
+        if (i == 0) {
+            out.push_back(in[i]);
+        } else if (in[i] == 'b' || in[i] == 'f' || in[i] == 'p' || in[i] == 'v') {
+            in[i] = '1';
+        } else if (in[i] == 'c' || in[i] == 'g' || in[i] == 'j' || in[i] == 'k') {
+            in[i] = '2';
+        } else if (in[i] == 'q' || in[i] == 's' || in[i] == 'x' || in[i] == 'z') {
+            in[i] = '2';
+        } else if (in[i] == 'd' || in[i] == 't') {
+            in[i] = '3';
+        } else if (in[i] == 'l') {
+            in[i] = '4';
+        } else if (in[i] == 'm' || in[i] == 'n') {
+            in[i] = '5';
+        } else if (in[i] == 'r') {
+            in[i] = '6';
+        } else {
+            in[i] = 'a';
+        }
+    }
+    for (size_t i = 1; i != in.size(); ++i) {
+        if (out.size() == 4) {
+            break;
+        } else if (in[i] != out[out.size() - 1] && in[i] != 'a') {
+            out += in[i];
+        }
+    }
+    size_t zero = 4 - out.size();
+    out.insert(4 - zero, zero, '0');
+    cout << out << "\n";
+    return 0;
+}
+
