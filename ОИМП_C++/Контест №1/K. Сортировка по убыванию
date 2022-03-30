@@ -1,1 +1,23 @@
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    string str;
+    ifstream file("input.txt");
+    vector<string> lines;
+    while (getline(file, str)) {
+        lines.push_back(str);
+    }
+    file.close();
+    sort(lines.rbegin(), lines.rend());
+    for (const string& line : lines) {
+        cout << line << "\n";
+    }
+    return 0;
+}
 
