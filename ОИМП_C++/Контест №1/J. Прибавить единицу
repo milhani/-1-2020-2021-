@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string number;
+    getline(cin, number);
+    int len = number.size();
+    if (number[len - 1] != '9') {
+        ++number[len - 1];
+    } else {
+        --len;
+        while (number[len] == '9') {
+            number[len] = '0';
+            --len;
+        }
+        if (len >= 0) {
+            ++number[len];
+        } else {
+            number = "1" + number;
+        }
+    }
+    cout << number << endl;
+    return 0;
+}
+
