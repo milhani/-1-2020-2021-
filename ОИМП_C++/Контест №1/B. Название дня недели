@@ -1,0 +1,36 @@
+#include <iostream>
+
+int main() {
+    int number;
+    std::cin >> number;
+    switch (number) {
+        case 1:
+            std::cout << "mon\n";
+            break;
+
+        case 2:
+            std::cout << "tue\n";
+            break;
+
+        case 3:
+            std::cout << "wed\n";
+            break;
+
+        case 4:
+            std::cout << "thu\n";
+            break;
+
+        case 5:
+            std::cout << "fri\n";
+            break;
+
+        case 6:
+            std::cout << "sat\n";
+            break;
+
+        case 7:
+            std::cout << "sun\n";
+            break;
+    }
+    return 0;
+}
