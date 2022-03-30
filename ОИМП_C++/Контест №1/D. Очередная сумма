@@ -1,0 +1,12 @@
+#include <iostream>
+
+int main() {
+    size_t n, sum = 0;
+    std::cin >> n;
+    for (size_t k = 1; k <= n; ++k) {
+        sum += k * k;
+    }
+    std::cout << sum << std::endl;
+    return 0;
+}
+
