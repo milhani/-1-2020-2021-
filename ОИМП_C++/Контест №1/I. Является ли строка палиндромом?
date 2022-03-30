@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string str, new_str, new_rev_str;
+    const unsigned int space_code = 32;
+    getline(cin, str);
+    for (unsigned char letter : str) {
+        int code = static_cast<int>(letter);
+        if (code != space_code) {
+            new_rev_str.insert(0, 1, letter);
+            new_str.push_back(letter);
+        }
+    }
+    if (new_str == new_rev_str) {
+        cout << "yes\n";
+    } else {
+        cout << "no\n";
+    }
+    return 0;
+}
+
