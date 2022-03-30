@@ -1,0 +1,11 @@
+#include <iostream>
+
+int main() {
+    const unsigned int first_sym = 33;
+    const unsigned int last_sym = 126;
+    for (unsigned int i = first_sym; i <= last_sym; ++i) {
+        std::cout << static_cast<char>(i) << ' ' << i << "\n";
+    }
+    return 0;
+}
+
