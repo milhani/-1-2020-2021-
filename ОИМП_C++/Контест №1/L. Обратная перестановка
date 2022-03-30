@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    size_t n;
+    cin >> n;
+    vector<int> in(n);
+    vector<int> out(n);
+    for (size_t i = 0; i < in.size(); ++i) {
+        cin >> in[i];
+    }
+    for (size_t i = 0; i < in.size(); ++i) {
+        out[in[i] - 1] = i + 1;
+    }
+    for (size_t i = 0; i < out.size(); ++i) {
+        cout << out[i] << ' ';
+    }
+    cout << endl;
+    return 0;
+}
+
