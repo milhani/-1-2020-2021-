@@ -1,0 +1,25 @@
+#include <iostream>
+
+int main() {
+    int c1, r1, c2, r2;
+    std::cin >> c1;
+    std::cin >> r1;
+    std::cin >> c2;
+    std::cin >> r2;
+    int x = c2 - c1, y = r2 - r1;
+    if (x < 0) {
+        x *= -1;
+    }
+    if (y < 0) {
+        y *= -1;
+    }
+    if (c1 == c2 || r1 == r2) {
+        std::cout << "YES\n";
+    } else if (x == y) {
+        std::cout << "YES\n";
+    } else {
+        std::cout << "NO\n";
+    }
+    return 0;
+}
+
