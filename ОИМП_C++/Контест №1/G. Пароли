@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    const unsigned int first_num = 48;
+    const unsigned int last_num = 57;
+
+    const unsigned int first_up_let = 65;
+    const unsigned int last_up_let = 90;
+
+    const unsigned int first_low_let = 97;
+    const unsigned int last_low_let = 122;
+
+    const unsigned int first_sym = 33;
+    const unsigned int last_sym = 126;
+
+    string password;
+    getline(cin, password);
+    int class_up_let = 0, class_low_let = 0, class_num = 0, class_other_sym = 0;
+    if (password.size() < 8 || password.size() > 14) {
+        cout << "NO\n";
+    } else {
+        for (unsigned char letter : password) {
+            unsigned int code = static_cast<int>(letter);
+            if (code < first_sym || code > last_sym) {
+                class_up_let = 0;
+                class_low_let = 0;
+                break;
+            } else if (code >= first_num && code <= last_num) {
+                class_num = 1;
+            } else if (code >= first_up_let && code <= last_up_let) {
+                class_up_let = 1;
+            } else if (code >= first_low_let && code <= last_low_let) {
+                class_low_let = 1;
+            } else {
+                class_other_sym = 1;
+            }
+        }
+        if (class_up_let + class_low_let + class_num + class_other_sym >= 3) {
+            cout << "YES\n";
+        } else {
+            cout << "NO\n";
+        }
+    }
+    return 0;
+}
+
