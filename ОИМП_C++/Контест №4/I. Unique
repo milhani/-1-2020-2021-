@@ -1,0 +1,16 @@
+template <typename Iter>
+Iter Unique(Iter first, Iter last) {
+     if (first == last)
+        return last;
+    Iter out = first;
+    ++first;
+    while (first != last) {
+        if (!(*out == *first)) {
+            ++out;
+            *out = *first;
+        }
+        ++first;
+    }
+    return ++out;
+}
+
