@@ -1,0 +1,51 @@
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <tuple>
+#include <vector>
+
+using namespace std;
+
+struct Student {
+    string name, surname;
+    size_t day, month, year;
+};
+
+bool name(const Student& s1, const Student& s2) {
+    if (tie(s1.surname, s1.name) == tie(s2.surname, s2.name)) {
+        return tie(s1.year, s1.month, s1.day) < tie(s2.year, s2.month, s2.day);
+    } else {
+        return tie(s1.surname, s1.name) < tie(s2.surname, s2.name);
+    }
+}
+
+bool date(const Student& s1, const Student& s2) {
+    if (tie(s1.year, s1.month, s1.day) == tie(s2.year, s2.month, s2.day)) {
+        return tie(s1.surname, s1.name) < tie(s2.surname, s2.name);
+    } else {
+        return tie(s1.year, s1.month, s1.day) < tie(s2.year, s2.month, s2.day);
+    }
+}
+
+int main() {
+    size_t n;
+    cin >> n;
+    vector<Student> students(n);
+    for (size_t i = 0; i < n; ++i) {
+        cin >> students[i].name >> students[i].surname >>
+        students[i].day >> students[i].month >> students[i].year;
+    }
+    string way_of_sort;
+    cin >> way_of_sort;
+    if (way_of_sort == "name") {
+        sort(students.begin(), students.end(), name);
+    } else {
+        sort(students.begin(), students.end(), date);
+    }
+    for (size_t i = 0; i < n; ++i) {
+        cout << students[i].name << ' ' << students[i].surname << ' ';
+        cout << students[i].day << '.' << students[i].month << '.' << students[i].year << endl;
+    }
+    return 0;
+}
+
