@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n, m, k;
+    cin >> n >> m;
+    vector<vector<int>> cinema(n, vector<int>(m));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            cin >> cinema[i][j];
+        }
+    }
+    cin >> k;
+    int cur_free;
+    for (int i = 0; i < n; ++i) {
+        cur_free = 0;
+        for (int j = 0; j < m; ++j) {
+            if (cinema[i][j] == 0) {
+                ++cur_free;
+            } else {
+                cur_free = 0;
+            }
+            if (cur_free >= k) {
+                cout << i + 1 << endl;
+                return 0;
+            }
+        }
+    }
+    cout << 0 << endl;
+    return 0;
+}
+
