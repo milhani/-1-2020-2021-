@@ -1,0 +1,32 @@
+#include <string>
+#include <utility>
+
+using namespace std;
+
+pair<size_t, size_t> FindVowels(const string& str, size_t pos) {
+    size_t len = 0, new_pos = pos;
+    bool start = false;
+    for (size_t i = pos; i < str.size(); ++i) {
+        char letter = static_cast<char>(tolower(str[i]));
+        if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o'
+        || letter == 'u' || letter == 'y') {
+            if (start) {
+                ++len;
+            } else {
+                start = true;
+                ++len;
+                new_pos = i;
+            }
+        } else {
+            if (start) {
+                return pair<size_t, size_t>(new_pos, len);
+            }
+        }
+    }
+    if (len == 0) {
+        return pair<size_t, size_t>(str.npos, len);
+    } else {
+        return pair<size_t, size_t>(new_pos, len);
+    }
+}
+
