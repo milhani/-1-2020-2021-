@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string CommonSuffix(const string& a, const string& b) {
+    string suffix;
+    size_t len_of_suffix = 0;
+    while (len_of_suffix < a.size() && len_of_suffix < b.size()) {
+        if (a.substr(a.size() - len_of_suffix - 1) == b.substr(b.size() - len_of_suffix - 1)) {
+            suffix = a.substr(a.size() - len_of_suffix - 1);
+            ++len_of_suffix;
+        } else {
+            break;
+        }
+    }
+    return suffix;
+}
+
