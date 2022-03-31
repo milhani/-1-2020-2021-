@@ -1,0 +1,28 @@
+#include <deque>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    int n, m;
+    string surname, condition;
+    cin >> n;
+    deque<string> stack;
+    for (int i = 0; i < n; ++i) {
+        cin >> surname >> condition;
+        if (condition == "top") {
+            stack.push_front(surname);
+        } else {
+            stack.push_back(surname);
+        }
+    }
+    cin >> m;
+    for (int i = 0; i < m; ++i) {
+        int ind;
+        cin >> ind;
+        cout << stack[ind - 1] << "\n";
+    }
+    return 0;
+}
+
