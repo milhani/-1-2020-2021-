@@ -1,0 +1,29 @@
+#include <fstream>
+#include <iostream>
+#include <set>
+#include <string>
+
+using namespace std;
+
+int main() {
+    set<string> files;
+    ifstream file("input.txt");
+    string str, word;
+    while (getline(file, str)) {
+        for (const char& letter : str) {
+            word.push_back(letter);
+            if (letter == '/') {
+                if (files.find(word) == files.end()) {
+                    files.insert(word);
+                }
+            }
+        }
+        word.erase();
+    }
+    file.close();
+    for (const string& line : files) {
+        cout << line << "\n";
+    }
+    return 0;
+}
+
