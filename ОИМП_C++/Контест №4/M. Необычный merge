@@ -1,0 +1,23 @@
+template <typename It, typename OutputIt>
+OutputIt SidewaysMerge(It first1, It last1, It first2, It last2, OutputIt out) {
+    --last2;
+    --first2;
+    while (true) {
+        if (first1 == last1) {
+            ++first2;
+            ++last2;
+            return std::reverse_copy(first2, last2, out);
+        } else if (first2 == last2) {
+            return std::copy(first1, last1, out);
+        }
+        if (*first1 < *last2) {
+            *out = *first1;
+            ++first1;
+        } else {
+            *out = *last2;
+            --last2;
+        }
+        ++out;
+    }
+}
+
