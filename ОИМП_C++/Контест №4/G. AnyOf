@@ -1,0 +1,9 @@
+template <typename It, typename Pred>
+bool AnyOf(It first, It last, Pred f) {
+    if (std::find_if(first, last, f) == last) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
