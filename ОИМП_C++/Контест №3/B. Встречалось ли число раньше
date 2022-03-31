@@ -1,0 +1,19 @@
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+int main() {
+    set<int> nums;
+    int n;
+    while (cin >> n) {
+        if (nums.find(n) == nums.end()) {
+            nums.insert(n);
+            cout << "NO\n";
+        } else {
+            cout << "YES\n";
+        }
+    }
+    return 0;
+}
+
