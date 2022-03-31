@@ -1,0 +1,47 @@
+#include <fstream>
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+int main() {
+    map<char, int> symbols;
+    const unsigned int space = 32;
+    const unsigned int new_line = 10;
+    int max_len = 0;
+    ifstream file("input.txt");
+    string str;
+    while (getline(file, str)) {
+        for (const char& symbol : str) {
+            if (symbol == space || symbol == new_line) {
+                continue;
+            }
+            if (symbols.find(symbol) == symbols.end()) {
+                symbols[symbol] = 1;
+            } else {
+                ++symbols[symbol];
+            }
+            if (symbols[symbol] > max_len) {
+                max_len = symbols[symbol];
+            }
+        }
+    }
+    file.close();
+    for (int i = max_len; i > 0; --i) {
+        for (auto& [symbol, amount] : symbols) {
+            if (amount >= i) {
+                cout << "#";
+            } else {
+                cout << ' ';
+            }
+        }
+        cout << "\n";
+    }
+    for (auto& [symbol, amount] : symbols) {
+        cout << symbol;
+    }
+    cout << "\n";
+    return 0;
+}
+
+
