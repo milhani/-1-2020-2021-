@@ -1,0 +1,42 @@
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<int> used_letters(26);
+    vector<int> letters_in_words(26);
+    int count = 0;
+    for (int i = 0; i < 26; ++i) {
+        used_letters.push_back(0);
+        letters_in_words.push_back(0);
+    }
+    ifstream file("input.txt");
+    string str;
+    while (getline(file, str)) {
+        if (!str.empty()) {
+            ++count;
+        }
+        for (const char& letter : str) {
+            letters_in_words[letter - 'a'] = 1;
+        }
+        for (int i = 0; i < 26; ++i) {
+            if (letters_in_words[i] == 1) {
+                ++used_letters[i];
+                letters_in_words[i] = 0;
+            }
+        }
+    }
+    file.close();
+    for (int i = 0; i < 26; ++i) {
+        int number = used_letters[i];
+        if (number == count) {
+            cout << char(i + 'a');
+        }
+    }
+    cout << "\n";
+    return 0;
+}
+
