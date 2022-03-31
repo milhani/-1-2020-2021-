@@ -1,0 +1,46 @@
+#include <algorithm>
+#include <iostream>
+#include <tuple>
+#include <vector>
+
+using namespace std;
+
+struct Alarm {
+    int day, hour, minute;
+};
+
+bool sorting(const Alarm& al1, const Alarm& al2) {
+    return tie(al1.day, al1.hour, al1.minute) < tie(al2.day, al2.hour, al2.minute);
+}
+
+int main() {
+    int cur_day, cur_hour, cur_minute;
+    cin >> cur_day >> cur_hour >> cur_minute;
+
+    size_t n;
+    cin >> n;
+    vector<Alarm> alarms(n);
+
+    for (size_t i = 0; i < n; ++i) {
+        cin >> alarms[i].day >> alarms[i].hour >> alarms[i].minute;
+        if (alarms[i].day != 0) {
+            if (tie(alarms[i].day, alarms[i].hour, alarms[i].minute)
+                < tie(cur_day, cur_hour, cur_minute)) {
+                alarms[i].day += 7;
+            }
+        } else {
+            while (tie(alarms[i].day, alarms[i].hour, alarms[i].minute)
+            < tie(cur_day, cur_hour, cur_minute)) {
+                alarms[i].day += 1;
+            }
+        }
+    }
+    sort(alarms.begin(), alarms.end(), sorting);
+
+    if (alarms[0].day > 7) {
+        alarms[0].day -= 7;
+    }
+    cout << alarms[0].day << ' ' << alarms[0].hour << ' ' << alarms[0].minute << endl;
+    return 0;
+}
+
