@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int day, month, year;
+    cin >> day >> month >> year;
+    vector<int> days_in_months = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+        days_in_months[1] = 29;
+    }
+    int new_day = (day + 2) % days_in_months[month - 1];
+    if (new_day == 0) {
+        new_day = days_in_months[month - 1];
+    }
+    if (new_day - day > 0) {
+        cout << new_day << ' ' << month << ' ' << year << endl;
+
+    } else {
+        int new_month = (month + 1) % 12;
+        if (new_month == 0) {
+            new_month = 12;
+        }
+        if (new_month - month > 0) {
+            cout << new_day << ' ' << new_month << ' ' << year << endl;
+        } else {
+            cout << new_day << ' ' << new_month << ' ' << year + 1 << endl;
+        }
+    }
+    return 0;
+}
+
