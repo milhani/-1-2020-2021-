@@ -1,0 +1,81 @@
+#include <algorithm>
+#include <cctype>
+#include <iostream>
+#include <iterator>
+#include <set>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<string> Split(const string& str) {
+    vector<string> lines;
+    string cur_word;
+    for (size_t i = 0; i < str.size(); ++i) {
+        char symbol = str[i];
+        if (symbol != ' ') {
+            cur_word.push_back(symbol);
+        } else {
+            lines.push_back(cur_word);
+            cur_word.erase();
+        }
+    }
+    lines.push_back(cur_word);
+    return lines;
+}
+
+int main() {
+    string line;
+    while (getline(cin, line)) {
+        if (line.empty()) {
+            return 0;
+        }
+        vector<string> datum = Split(line);
+        int contest = stoi(datum[0]);
+        int nums = stoi(datum[1]);
+        set<int> all;
+        set<int> input;
+        set<int> out;
+        for (int i = 1; i != nums + 1; ++i) {
+            all.insert(i);
+        }
+        bool digit = true;
+        if (datum.size() != 2) {
+            if (datum[2].size() == 1) {
+                char t = datum[2][0];
+                if (isdigit(t) == 0) {
+                    digit = false;
+                    input.insert(datum[2][0] - 'A' + 1);
+                }
+            }
+            if (digit) {
+                int t = stoi(datum[2]);
+                input.insert(t);
+            }
+            for (size_t i = 3; i != datum.size(); ++i) {
+                if (digit) {
+                    int t = stoi(datum[i]);
+                    input.insert(t);
+                } else {
+                    char t = datum[i][0];
+                    input.insert(t - 'A' + 1);
+                }
+            }
+        }
+        set_difference(all.begin(), all.end(), input.begin(), input.end(),
+                        inserter(out, out.begin()));
+        cout << contest;
+        if (digit) {
+            for (const int& x : out) {
+                cout << ' ' << x;
+            }
+        } else {
+            for (const int& x : out) {
+                cout << ' ' << char('A' + x - 1);
+            }
+        }
+        cout << "\n";
+    }
+    return 0;
+}
+
