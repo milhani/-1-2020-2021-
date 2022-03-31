@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<int> queue;
+    string com;
+    cin >> com;
+    while (com != "exit") {
+        if (com == "push") {
+            int x;
+            cin >> x;
+            queue.push_back(x);
+            cout << "ok\n";
+        } else if (com == "pop") {
+            if (!queue.empty()) {
+                cout << *queue.begin() << "\n";
+                queue.erase(queue.begin());
+            } else {
+                cout << "error\n";
+            }
+        } else if (com == "front") {
+            if (!queue.empty()) {
+                cout << *queue.begin() << "\n";
+            } else {
+                cout << "error\n";
+            }
+        } else if (com == "size") {
+            cout << queue.size() << "\n";
+        } else {
+            queue.clear();
+            cout << "ok\n";
+        }
+        cin >> com;
+    }
+    cout << "bye\n";
+    return 0;
+}
+
