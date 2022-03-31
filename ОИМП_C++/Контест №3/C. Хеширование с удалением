@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include <unordered_set>
+
+using namespace std;
+
+int main() {
+    unordered_set<string> lines;
+    string str;
+    char com;
+    cin >> com;
+    while (com != '#') {
+        cin >> str;
+        if (com == '+') {
+            lines.insert(str);
+        } else if (com == '-') {
+            if (lines.find(str) != lines.end()) {
+                lines.erase(str);
+            }
+        } else {
+            if (lines.find(str) != lines.end()) {
+                cout << "YES\n";
+            } else {
+                cout << "NO\n";
+            }
+        }
+        cin >> com;
+    }
+    return 0;
+}
+
